@@ -1,6 +1,11 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System;
+using System.Threading.Tasks;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using GalaSoft.MvvmLight.Views;
+using Microsoft.Practices.ServiceLocation;
+using MvvmLight1.Model;
 
 namespace MvvmLight1.ViewModel
 {
@@ -12,18 +17,61 @@ namespace MvvmLight1.ViewModel
         private RelayCommand _showMessageBox;
         private RelayCommand _decrementCommand;
 
+        //default stuff:
+//        public readonly IDataService _dataService;
+//        public readonly INavigationService _navigationService;
 
-        public SecondViewModel(IMessenger messenger) : base(messenger)
+
+        public SecondViewModel(INavigationService navigationService, IDataService dataService)
         {
+//            _navigationService = navigationService;
+//            _dataService = dataService;
+            //Initialize();
         }
 
-        public RelayCommand NavigateComamnd => _navigateCommand
-                                               ??
-                                               (_navigateCommand = new RelayCommand(
-                                                   () =>
-                                                   {
+//        private async Task Initialize()
+//        {
+//            try
+//            {
+//                var item = await _dataService.GetData();
+//                
+//            }
+//            catch (Exception exception)
+//            {
+//                    
+//                throw;
+//            }
+//        
+//        }
 
-                                                   }
-                                                   ));
+        //        public RelayCommand NavigateComamnd
+        //        {
+        //            get
+        //            {
+        //                return _navigateCommand
+        //                       ??
+        //                       (_navigateCommand = new RelayCommand(
+        //                           () => { }
+        //                           ));
+        //            }
+        //        }
+
+        public RelayCommand ShowMessageBox
+        {
+            get
+            {
+                return _showMessageBox ??
+                       (_showMessageBox = new RelayCommand(
+                           async () =>
+                           {
+                               var dialog = ServiceLocator.Current.GetInstance<IDialogService>();
+                               await dialog.ShowMessage("Hello mamal", "i hope it works");
+                           }
+                           ));
+            }
+        }
+
     }
+
+    //changes maded
 }

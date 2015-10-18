@@ -12,6 +12,7 @@ namespace MvvmLight1.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
+        //changes made
         public const string ClockPropertyName = "Clock";
         public const string WelcomeTitlePropertyName = "WelcomeTitle";
 
