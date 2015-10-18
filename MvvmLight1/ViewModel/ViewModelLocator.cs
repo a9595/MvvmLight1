@@ -8,6 +8,7 @@ namespace MvvmLight1.ViewModel
 {
     public class ViewModelLocator
     {
+        public const string ListPageKey = "ListPage";
         public const string SecondPageKey = "SecondPage";
 
         static ViewModelLocator()
@@ -16,6 +17,7 @@ namespace MvvmLight1.ViewModel
 
             var nav = new NavigationService();
             nav.Configure(SecondPageKey, typeof(SecondPage));
+            nav.Configure(ListPageKey, typeof(ListPage));
             SimpleIoc.Default.Register<INavigationService>(() => nav);
 
             SimpleIoc.Default.Register<IDialogService, DialogService>();

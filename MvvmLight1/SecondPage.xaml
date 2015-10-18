@@ -35,6 +35,14 @@
             	FontSize="32"
             	Width="150"
             	Height="60" />
+            <Button x:Name="NavigateToListPageButton"
+            	Content="Navigate to ListPage"
+            	HorizontalAlignment="Stretch"
+            	VerticalAlignment="Stretch"
+            	Command="{Binding NavigateCommandListPageCommand, Mode=OneTime}"    
+            	FontSize="32"
+            	Width="150"
+            	Height="60" />
 
             <TextBlock x:Name="DisplayText"
                        TextWrapping="Wrap"

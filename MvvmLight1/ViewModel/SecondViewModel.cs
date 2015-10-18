@@ -12,10 +12,11 @@ namespace MvvmLight1.ViewModel
     public class SecondViewModel : ViewModelBase
     {
 
-        private int _counter = 777;
-        private RelayCommand _navigateCommand;
+        //private int _counter = 777;
+        private RelayCommand _navigateCommandListPageCommand;
         private RelayCommand _showMessageBox;
         private RelayCommand _decrementCommand;
+        private INavigationService _navigationService;
 
         //default stuff:
 //        public readonly IDataService _dataService;
@@ -24,7 +25,7 @@ namespace MvvmLight1.ViewModel
 
         public SecondViewModel(INavigationService navigationService, IDataService dataService)
         {
-//            _navigationService = navigationService;
+            _navigationService = navigationService;
 //            _dataService = dataService;
             //Initialize();
         }
@@ -70,6 +71,17 @@ namespace MvvmLight1.ViewModel
                            ));
             }
         }
+
+        public RelayCommand NavigateCommandListPageCommand => _navigateCommandListPageCommand
+                                                              ?? (_navigateCommandListPageCommand = new RelayCommand(
+                                                                  () =>
+                                                                  {
+                                                                      _navigationService.NavigateTo(
+                                                                          ViewModelLocator.ListPageKey);
+                                                                  }
+                                                                  ));
+
+
 
     }
 

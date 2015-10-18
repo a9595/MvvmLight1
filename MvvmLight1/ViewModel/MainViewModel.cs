@@ -40,18 +40,12 @@ namespace MvvmLight1.ViewModel
             }
         }
 
-        public RelayCommand IncrementCommand
-        {
-            get
-            {
-                return _incrementCommand
-                    ?? (_incrementCommand = new RelayCommand(
-                    () =>
-                    {
-                        WelcomeTitle = string.Format("Counter clicked {0} times", ++_counter);
-                    }));
-            }
-        }
+        public RelayCommand IncrementCommand => _incrementCommand
+                                                ?? (_incrementCommand = new RelayCommand(
+                                                    () =>
+                                                    {
+                                                        WelcomeTitle = string.Format("Counter clicked {0} times", ++_counter);
+                                                    }));
 
         public RelayCommand<string> NavigateCommand => _navigateCommand
                                                        ?? (_navigateCommand = new RelayCommand<string>(
